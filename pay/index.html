@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">ARKAN DIGITAL | Secure Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://gumroad.com/js/gumroad.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Cinzel:wght@700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+        .font-ar { font-family: 'Cairo', sans-serif; }
+        .font-en { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-brand { font-family: 'Cinzel', serif; }
+        .box-frame {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+        }
+    </style>
+</head>
+<body class="font-ar min-h-screen py-7 px-4 flex flex-col items-center justify-center antialiased" id="body-root">
+
+    <!-- إشعار النسخ السريع -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl items-center gap-2">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-msg">Copied!</span>
+    </div>
+
+    <div class="w-full max-w-md space-y-4">
+
+        <!-- زر تبديل اللغة الفوق (وكيتبدل أوتوماتيكياً على حساب لغة تلفون الكليان) -->
+        <div class="flex justify-end">
+            <button onclick="toggleLanguage()" id="lang-switch-btn" class="text-[11px] font-extrabold text-slate-600 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1 rounded-full flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-globe text-slate-500"></i>
+                <span id="lang-btn-text">English</span>
+            </button>
+        </div>
+
+        <!-- الهيدر: اللوغو والاسم والملخص -->
+        <div class="text-center space-y-1 pb-1">
+            <div class="w-14 h-14 mx-auto mb-2 rounded-2xl bg-[#072a20] text-[#d4af37] flex items-center justify-center text-2xl shadow-sm">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h1 class="font-brand text-2xl font-extrabold tracking-wider text-slate-900">ARKAN DIGITAL</h1>
+            <p id="sub-title" class="text-xs font-bold text-slate-500">تفعيل الموقع الرسمي + الدومين (.com) والاستضافة لسنة كاملة</p>
+            <div id="price-badge" class="inline-block bg-emerald-50 text-emerald-800 border border-emerald-200 px-3.5 py-1 rounded-full text-xs font-black mt-1">
+                المبلغ الإجمالي: $129 USD (أو ما يعادلها بعملتك المحلية)
+            </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- الإطار 1: الدفع المباشر بالبطاقة البنكية (Visa / MasterCard)    -->
+        <!-- =============================================================== -->
+        <div class="box-frame rounded-2xl p-5 sm:p-6 space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-regular fa-credit-card text-emerald-700 text-lg"></i>
+                    <h2 id="box1-title" class="text-sm sm:text-base font-black text-slate-900">1. الدفع بالبطاقة البنكية</h2>
+                </div>
+                <div class="flex items-center gap-2 text-2xl">
+                    <i class="fa-brands fa-cc-visa text-blue-700"></i>
+                    <i class="fa-brands fa-cc-mastercard text-orange-600"></i>
+                    <i class="fa-brands fa-cc-apple-pay text-slate-900"></i>
+                </div>
+            </div>
+
+            <p id="box1-desc" class="text-xs font-semibold text-slate-500 leading-relaxed">
+                ادفع بأمان تام وفوراً عبر بطاقة Visa، MasterCard، أو Apple Pay:
+            </p>
+
+            <a href="https://arkann.gumroad.com/l/vip?wanted=true" data-gumroad-overlay-checkout="true"
+                class="w-full py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition">
+                <i class="fa-solid fa-lock text-xs"></i>
+                <span id="box1-btn">الدفع الآمن بالبطاقة البنكية الآن ($129)</span>
+            </a>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- الإطار 2: الدفع عبر حساب PayPal (منفصل ومستقل)                  -->
+        <!-- =============================================================== -->
+        <div class="box-frame rounded-2xl p-5 sm:p-6 space-y-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-paypal text-sky-700 text-lg"></i>
+                    <h2 id="box2-title" class="text-sm sm:text-base font-black text-slate-900">2. الدفع السريع عبر PayPal</h2>
+                </div>
+                <span class="text-[11px] font-bold text-slate-400" dir="ltr">@Aityacoub</span>
+            </div>
+
+            <a href="https://www.paypal.me/Aityacoub/129USD" target="_blank"
+                class="w-full py-3 px-5 rounded-xl bg-[#0070ba] hover:bg-[#005ea6] text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition">
+                <i class="fa-brands fa-paypal text-base"></i>
+                <span id="box2-btn">الدفع بواسطة حساب PayPal</span>
+            </a>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- الإطار 3: التحويل البنكي الدولي المباشر (IBAN)                  -->
+        <!-- =============================================================== -->
+        <div class="box-frame rounded-2xl p-5 sm:p-6 space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-building-columns text-slate-800 text-base"></i>
+                    <h2 id="box3-title" class="text-sm sm:text-base font-black text-slate-900">3. التحويل البنكي المباشر (IBAN)</h2>
+                </div>
+                <span id="box3-badge" class="text-[10px] font-extrabold bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md">تحويل دولي من تطبيق البنك</span>
+            </div>
+
+            <div class="space-y-2">
+                <!-- الاسم -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 flex items-center justify-between gap-2">
+                    <div class="min-w-0">
+                        <span id="lbl-name" class="block text-[10px] font-bold text-slate-400">اسم المستفيد (Beneficiary Name)</span>
+                        <p class="text-xs font-black text-slate-800 truncate" dir="ltr">ABDESSAMAD AIT YACOUB</p>
+                    </div>
+                    <button type="button" onclick="copyItem('ABDESSAMAD AIT YACOUB')" class="copy-btn px-3 py-1 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-extrabold shrink-0">
+                        نسخ
+                    </button>
+                </div>
+
+                <!-- الآيبان -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 flex items-center justify-between gap-2">
+                    <div class="min-w-0">
+                        <span id="lbl-iban" class="block text-[10px] font-bold text-slate-400">رقم الآيبان الدولي (IBAN)</span>
+                        <p class="text-xs font-black text-emerald-700 break-all" dir="ltr">MA64230041504579621102280051</p>
+                    </div>
+                    <button type="button" onclick="copyItem('MA64230041504579621102280051')" class="copy-btn px-3 py-1 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-extrabold shrink-0">
+                        نسخ
+                    </button>
+                </div>
+
+                <!-- السويفت والبنك -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 flex items-center justify-between">
+                        <div>
+                            <span id="lbl-swift" class="block text-[10px] font-bold text-slate-400">رمز SWIFT / BIC</span>
+                            <p class="text-xs font-black text-slate-800" dir="ltr">CIHMMAMC</p>
+                        </div>
+                        <button type="button" onclick="copyItem('CIHMMAMC')" class="copy-btn px-2 py-1 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-[11px] font-extrabold">
+                            نسخ
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 flex items-center justify-between">
+                        <div>
+                            <span id="lbl-bank" class="block text-[10px] font-bold text-slate-400">البنك والدولة</span>
+                            <p class="text-xs font-black text-slate-800" dir="ltr">CIH - MOROCCO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- فوتر صغير -->
+        <p id="footer-note" class="text-center text-[11px] font-bold text-slate-400 pt-1">
+            بعد إتمام الدفع، أرسل صورة الإيصال عبر واتساب لتفعيل الموقع فوراً ⚡
+        </p>
+
+    </div>
+
+    <script>
+        const I18N = {
+            ar: {
+                dir: "rtl",
+                font: "font-ar",
+                switchBtn: "English",
+                pageTitle: "ARKAN DIGITAL | بوابة الدفع الآمن",
+                subTitle: "تفعيل الموقع الرسمي + الدومين (.com) والاستضافة لسنة كاملة",
+                priceBadge: "المبلغ الإجمالي: $129 USD (أو ما يعادلها بعملتك المحلية)",
+                box1Title: "1. الدفع بالبطاقة البنكية",
+                box1Desc: "ادفع بأمان تام وفوراً عبر بطاقة Visa، MasterCard، أو Apple Pay:",
+                box1Btn: "الدفع الآمن بالبطاقة البنكية الآن ($129)",
+                box2Title: "2. الدفع السريع عبر PayPal",
+                box2Btn: "الدفع بواسطة حساب PayPal",
+                box3Title: "3. التحويل البنكي المباشر (IBAN)",
+                box3Badge: "تحويل دولي من تطبيق البنك",
+                lblName: "اسم المستفيد (Beneficiary Name)",
+                lblIban: "رقم الآيبان الدولي (IBAN)",
+                lblSwift: "رمز SWIFT / BIC",
+                lblBank: "البنك والدولة",
+                copyBtn: "نسخ",
+                copiedMsg: "تم النسخ بنجاح!",
+                footerNote: "بعد إتمام الدفع، أرسل صورة الإيصال عبر واتساب لتفعيل الموقع فوراً ⚡"
+            },
+            en: {
+                dir: "ltr",
+                font: "font-en",
+                switchBtn: "العربية",
+                pageTitle: "ARKAN DIGITAL | Secure Checkout Portal",
+                subTitle: "Official Website Activation + (.com) Domain & 1-Year Hosting",
+                priceBadge: "Total Package: $129 USD (All-Inclusive for 1 Full Year)",
+                box1Title: "1. Pay by Bank Card",
+                box1Desc: "Instant & secure checkout via Visa, MasterCard, or Apple Pay:",
+                box1Btn: "Pay Securely by Card Now ($129)",
+                box2Title: "2. Express PayPal Checkout",
+                box2Btn: "Pay via PayPal Account",
+                box3Title: "3. Direct Bank Transfer (IBAN)",
+                box3Badge: "Bank App / Wise / Revolut",
+                lblName: "Beneficiary Name",
+                lblIban: "International IBAN Number",
+                lblSwift: "SWIFT / BIC Code",
+                lblBank: "Bank & Country",
+                copyBtn: "Copy",
+                copiedMsg: "Copied to clipboard!",
+                footerNote: "Once payment is completed, please send the receipt screenshot on WhatsApp for instant activation ⚡"
+            }
+        };
+
+        let currentLang = "ar";
+
+        function applyLanguage(lang) {
+            currentLang = (lang === "en") ? "en" : "ar";
+            const t = I18N[currentLang];
+
+            const htmlRoot = document.getElementById("html-root");
+            const bodyRoot = document.getElementById("body-root");
+            htmlRoot.lang = currentLang;
+            htmlRoot.dir = t.dir;
+            bodyRoot.className = `${t.font} min-h-screen py-7 px-4 flex flex-col items-center justify-center antialiased`;
+
+            document.getElementById("page-title").innerText = t.pageTitle;
+            document.getElementById("lang-btn-text").innerText = t.switchBtn;
+            document.getElementById("sub-title").innerText = t.subTitle;
+            document.getElementById("price-badge").innerText = t.priceBadge;
+            document.getElementById("box1-title").innerText = t.box1Title;
+            document.getElementById("box1-desc").innerText = t.box1Desc;
+            document.getElementById("box1-btn").innerText = t.box1Btn;
+            document.getElementById("box2-title").innerText = t.box2Title;
+            document.getElementById("box2-btn").innerText = t.box2Btn;
+            document.getElementById("box3-title").innerText = t.box3Title;
+            document.getElementById("box3-badge").innerText = t.box3Badge;
+            document.getElementById("lbl-name").innerText = t.lblName;
+            document.getElementById("lbl-iban").innerText = t.lblIban;
+            document.getElementById("lbl-swift").innerText = t.lblSwift;
+            document.getElementById("lbl-bank").innerText = t.lblBank;
+            document.getElementById("footer-note").innerText = t.footerNote;
+
+            document.querySelectorAll(".copy-btn").forEach(btn => {
+                btn.innerText = t.copyBtn;
+            });
+        }
+
+        function toggleLanguage() {
+            applyLanguage(currentLang === "ar" ? "en" : "ar");
+        }
+
+        function copyItem(val) {
+            navigator.clipboard.writeText(val).then(() => {
+                const toast = document.getElementById("toast");
+                document.getElementById("toast-msg").innerText = I18N[currentLang].copiedMsg;
+                toast.classList.remove("hidden");
+                toast.classList.add("flex");
+                setTimeout(() => {
+                    toast.classList.add("hidden");
+                    toast.classList.remove("flex");
+                }, 2000);
+            });
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramLang = urlParams.get("lang");
+            if (paramLang === "en" || paramLang === "ar") {
+                applyLanguage(paramLang);
+            } else {
+                const browserLang = (navigator.language || navigator.userLanguage || "ar").toLowerCase();
+                applyLanguage(browserLang.startsWith("ar") ? "ar" : "en");
+            }
+        });
+    </script>
+</body>
+</html>
